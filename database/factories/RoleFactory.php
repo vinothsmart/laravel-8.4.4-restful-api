@@ -22,7 +22,9 @@ class RoleFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'role' => $faker->name,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }
