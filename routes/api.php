@@ -30,4 +30,4 @@ Route::get('rolesList', [RoleController::class, 'list']);
  * Users
  */
 
-Route::resource('users', 'User\UserController', ['except' => ['create', 'edit']]);
+Route::resource('users', UserController::class, ['except' => ['create', 'edit']]);
