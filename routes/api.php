@@ -24,8 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  */
 
 Route::resource('roles', RoleController::class, ['except' => ['create', 'edit']]);
-
-Route::name('rolesList')->get('rolesList', 'Role\RoleController@list');
+Route::get('rolesList', [RoleController::class, 'list']);
 
 /**
  * Users
