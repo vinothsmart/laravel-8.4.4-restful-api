@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\DB;
@@ -51,11 +52,15 @@ class UserFactory extends Factory
                 $userRoleAssign = [
                     'role_id' => 1,
                     'user_id' => $user->id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
                 ];
             } else {
                 $userRoleAssign = [
                     'role_id' => Role::where('id', '>', 1)->get()->random()->id,
                     'user_id' => $user->id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
                 ];
             }
             DB::table('roles_users')->insert($userRoleAssign);
