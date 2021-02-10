@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class UserFactory extends Factory
@@ -34,8 +34,16 @@ class UserFactory extends Factory
             'verification_token' => null,
             'admin' => User::REGULAR_USER,
         ];
+    }
 
-        $factory->afterCreating(User::class, function ($user, $faker) {
+    /**
+     * Configure the model factory.
+     *
+     * @return $this
+     */
+    public function configure()
+    {
+        return $this->afterCreating(function (User $user) {
             /**
              * Role assign for user
              */
