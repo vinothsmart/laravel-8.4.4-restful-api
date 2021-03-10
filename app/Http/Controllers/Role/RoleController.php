@@ -25,7 +25,7 @@ class RoleController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    function list() {
+    public function list() {
         $roles = Role::select('id', 'role')->get();
 
         return $this->showList($roles);

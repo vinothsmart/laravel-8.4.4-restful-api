@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Role\RoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Role\RoleController;
+use App\Http\Controllers\User\UserController;
 
 /*
 |--------------------------------------------------------------------------
