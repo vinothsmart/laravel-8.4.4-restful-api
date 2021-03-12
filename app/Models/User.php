@@ -35,6 +35,7 @@ class User extends Authenticatable
         'image',
         'client_details',
     ];
+    
 
     /**
      * The attributes that should be hidden for arrays.
@@ -84,5 +85,13 @@ class User extends Authenticatable
     public static function generateVerificationCode()
     {
         return Str::random(40);
+    }
+
+    /**
+     * The roles that belong to the user.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role');
     }
 }
