@@ -36,7 +36,7 @@ class UserController extends ApiController
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6|confirmed',
             'role_id' => 'required',
-            // 'image' => 'required',
+            'image' => 'required',
         ];
 
         $this->validate($request, $rules);
