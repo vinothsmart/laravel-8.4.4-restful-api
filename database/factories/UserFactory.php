@@ -63,12 +63,12 @@ class UserFactory extends Factory
                     'updated_at' => now(),
                 ];
             }
-            DB::table('role_user')->insert($userRoleAssign);
+            DB::table('roles_users')->insert($userRoleAssign);
 
             /**
              * Getting role information for user
              */
-            $role = DB::table('role_user')->where('user_id', $user->id)->first();
+            $role = DB::table('roles_users')->where('user_id', $user->id)->first();
 
             /**
              * Updating User details based on role

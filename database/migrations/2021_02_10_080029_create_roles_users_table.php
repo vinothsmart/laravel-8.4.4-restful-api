@@ -13,9 +13,10 @@ class CreateRolesUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('role_user', function (Blueprint $table) {
+        Schema::create('roles_users', function (Blueprint $table) {
             $table->foreignId('role_id')->constrained();            
             $table->foreignId('user_id')->constrained();
+            $table->timestamps();
         });
     }
 
@@ -26,6 +27,6 @@ class CreateRolesUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('role_user');
+        Schema::dropIfExists('roles_users');
     }
 }
