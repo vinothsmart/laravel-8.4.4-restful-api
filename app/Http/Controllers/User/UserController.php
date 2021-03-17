@@ -77,7 +77,7 @@ class UserController extends ApiController
         // Adding to Pivot Table
         $userRoleAssign = ['role_id' => $roleId, 'user_id' => $user->id];
 
-        DB::table('roles_users')
+        DB::table('role_user')
             ->insert($userRoleAssign);
 
         $user->roles;
@@ -127,7 +127,7 @@ class UserController extends ApiController
             $decryptedRoleId = \Hashids::connection(\App\Role::class)->decode($encryptedRoleId);
             $roleId = $decryptedRoleId[0];
         } else {
-            $roleOfuser = DB::table('roles_users')->where('user_id', $user->id)->first();
+            $roleOfuser = DB::table('role_user')->where('user_id', $user->id)->first();
             $roleId = $roleOfuser->role_id;
         }
 
@@ -171,7 +171,7 @@ class UserController extends ApiController
         // Update role
         if ($request->has('role_id')) {
             $userRoleAssign = ['role_id' => $roleId];
-            DB::table('roles_users')
+            DB::table('role_user')
                 ->where('user_id', $user->id)
                 ->update($userRoleAssign);
 
@@ -205,7 +205,7 @@ class UserController extends ApiController
         // Delete image
         Storage::delete($user->image);
         // Delete Role
-        DB::table('roles_users')
+        DB::table('role_user')
             ->where('user_id', $user->id)
             ->delete();
         return $this->showOne($user);
