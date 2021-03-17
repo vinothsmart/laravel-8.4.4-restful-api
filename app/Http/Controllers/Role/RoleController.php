@@ -39,7 +39,20 @@ class RoleController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        // Validation
+        $rules = [
+            'role' => 'required',
+        ];
+
+        $this->validate($request, $rules);
+
+        $data = $request->all();
+        $data['role'] = $request->role;
+        $data['client_details'] = "";
+
+        $role = Role::create($data);
+
+        return $this->showOne($role, 201);
     }
 
     /**
