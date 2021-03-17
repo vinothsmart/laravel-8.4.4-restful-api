@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Role\RoleUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('roles', RoleController::class, ['except' => ['create', 'edit']]);
 Route::get('rolesList', [RoleController::class, 'list']);
+Route::resource('roles.users', RoleUserController::class, ['only' => ['index']]);
 
 /**
  * Users
