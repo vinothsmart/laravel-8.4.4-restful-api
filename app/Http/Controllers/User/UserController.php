@@ -178,7 +178,8 @@ class UserController extends ApiController
                 ->update($userRoleAssign);
 
             // Getting Client Details
-            $user->client_details = $this->applicationDetector();
+            // $user->client_details = $this->applicationDetector();
+            $user->client_details = "";
         }
 
         if (!$user->isDirty()) {
@@ -186,7 +187,8 @@ class UserController extends ApiController
         }
 
         // Getting Client Details
-        $user->client_details = $this->applicationDetector();
+        // $user->client_details = $this->applicationDetector();
+        $user->client_details = "";
 
         $user->save();
 
