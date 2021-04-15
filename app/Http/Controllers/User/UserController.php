@@ -159,7 +159,6 @@ class UserController extends ApiController
         }
 
         if ($request->has('admin')) {
-
             $this->allowedAdminAction();
 
             if (!$user->isAdmin()) {

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Role\RoleUserController;
+use App\Http\Controllers\User\UserRoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,4 @@ Route::resource('roles.users', RoleUserController::class, ['only' => ['index']])
  */
 
 Route::resource('users', UserController::class, ['except' => ['create', 'edit']]);
+Route::resource('users.roles', UserRoleController::class, ['only' => ['index']]);
