@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\ApiController;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends ApiController
@@ -50,7 +51,8 @@ class UserController extends ApiController
         $encryptedRoleId = $request->role_id;
 
         // Decrypyt Role Id
-        $decryptedRoleId = \Hashids::connection(\App\Role::class)->decode($encryptedRoleId);
+        // $decryptedRoleId = \Hashids::connection(\App\Role::class)->decode($encryptedRoleId);
+        $decryptedRoleId = $request->role_id;
         $roleId = $decryptedRoleId[0];
 
         if ($roleId == 1 || $roleId == 2) {
@@ -70,7 +72,8 @@ class UserController extends ApiController
         $data['verified'] = $isAdmin == true ? User::VERIFIED_USER : User::UNVERIFIED_USER;
         $data['verification_token'] = $isAdmin == true ? null : User::generateVerificationCode();
         $data['admin'] = $isAdmin == true ? User::ADMIN_USER : User::REGULAR_USER;
-        $data['client_details'] = $this->applicationDetector();
+        // $data['client_details'] = $this->applicationDetector();
+        $data['client_details'] = "";
 
         $user = User::create($data);
 
