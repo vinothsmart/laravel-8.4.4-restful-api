@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Role;
 use Illuminate\Support\Str;
+use App\Transformers\UserTransformer;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,6 +15,8 @@ class User extends Authenticatable
     use HasFactory, Notifiable, SoftDeletes;
 
     protected $dates = ['deleted_at'];
+
+    public $transformer = UserTransformer::class;
 
     const VERIFIED_USER = '1';
     const UNVERIFIED_USER = '0';
