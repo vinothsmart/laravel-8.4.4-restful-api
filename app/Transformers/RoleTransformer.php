@@ -2,6 +2,8 @@
 
 namespace App\Transformers;
 
+
+use App\Models\Role;
 use League\Fractal\TransformerAbstract;
 
 class RoleTransformer extends TransformerAbstract
@@ -29,10 +31,14 @@ class RoleTransformer extends TransformerAbstract
      *
      * @return array
      */
-    public function transform()
+    public function transform(Role $role)
     {
         return [
-            //
+            'userRoleId' => (int) $role->id,
+            'userRole' => (string) $role->role,
+            'creationDate' => (string) $role->created_at,
+            'lastChange' => (string) $role->updated_at,
+            'deletedDate' => isset($role->deleted_at) ? (string) $role->deleted_at : null,
         ];
     }
 }
