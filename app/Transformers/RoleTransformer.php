@@ -2,7 +2,6 @@
 
 namespace App\Transformers;
 
-
 use App\Models\Role;
 use League\Fractal\TransformerAbstract;
 
@@ -40,5 +39,18 @@ class RoleTransformer extends TransformerAbstract
             'lastChange' => (string) $role->updated_at,
             'deletedDate' => isset($role->deleted_at) ? (string) $role->deleted_at : null,
         ];
+    }
+
+    public static function originalAttribute($index)
+    {
+        $attributes = [
+            'userRoleId' => 'id',
+            'userRole' => 'role',
+            'creationDate' => 'created_at',
+            'lastChange' => 'updated_at',
+            'deletedDate' => 'deleted_at',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
     }
 }
