@@ -14,8 +14,19 @@ class TransfromInput
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $transfer)
     {
+        $transformedInput = [];
+
+        // adding condition transform value to  Original value
+        // For example title = name
+        foreach ($request->request->all() as $input => $value) {
+            $transformedInput[$transformer::originalAttribute($input)] = $value;
+        }
+
+        // Then going to replace the value
+        $request->replace($transformedInput);
+        
         return $next($request);
     }
 }
