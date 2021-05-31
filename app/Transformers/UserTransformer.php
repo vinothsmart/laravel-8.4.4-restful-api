@@ -98,6 +98,8 @@ class UserTransformer extends TransformerAbstract
             'name' => 'userName',
             'email' => 'userEmail',
             'email_verified_at' => 'userEmailVerifiedDate',
+            'password' => 'password',
+            'password_confirmation' => 'password_confirmation',
             'image' => 'image',
             'verified' => 'isVerified',
             'admin' => 'isAdmin',
