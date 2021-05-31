@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class TransfromInput
 {
@@ -29,7 +30,7 @@ class TransfromInput
         
         $response = $next($request);
 
-        if (isset($response->exception)) {
+        if (isset($response->exception) && $response->exception instanceof ValidationException) {
             $data = $response->getData();
            
 

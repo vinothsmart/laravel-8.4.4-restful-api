@@ -103,7 +103,8 @@ class UserTransformer extends TransformerAbstract
             'admin' => 'isAdmin',
             'created_at' => 'creationDate',
             'updated_at' => 'lastChange',
-            'updated_at' => 'deletedDate',
+            'deleted_at' => 'deletedDate',
+            'role_id' => 'userRoleId',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
