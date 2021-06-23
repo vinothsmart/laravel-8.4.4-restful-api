@@ -38,6 +38,7 @@ class RoleTransformer extends TransformerAbstract
             'creationDate' => (string) $role->created_at,
             'lastChange' => (string) $role->updated_at,
             'deletedDate' => isset($role->deleted_at) ? (string) $role->deleted_at : null,
+            'clientDetails' => (string) $role->client_details,
             'links' => [
                 [
                     'rel' => 'self',
@@ -59,6 +60,7 @@ class RoleTransformer extends TransformerAbstract
             'creationDate' => 'created_at',
             'lastChange' => 'updated_at',
             'deletedDate' => 'deleted_at',
+            'clientDetails' => 'client_details',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
@@ -72,6 +74,7 @@ class RoleTransformer extends TransformerAbstract
             'created_at' => 'creationDate',
             'updated_at' => 'lastChange',
             'updated_at' => 'deletedDate',
+            'client_details' => 'clientDetails'
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
