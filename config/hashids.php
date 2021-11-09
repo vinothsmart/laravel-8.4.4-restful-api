@@ -37,16 +37,21 @@ return [
 
     'connections' => [
 
-        'main' => [
-            'salt' => 'your-salt-string',
-            'length' => 'your-length-integer',
-            // 'alphabet' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
-        ],
+        // 'main' => [
+        //     'salt' => 'your-salt-string',
+        //     'length' => 'your-length-integer',
+        //     // 'alphabet' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+        // ],
 
-        'alternative' => [
-            'salt' => 'your-salt-string',
-            'length' => 'your-length-integer',
-            // 'alphabet' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+        // 'alternative' => [
+        //     'salt' => 'your-salt-string',
+        //     'length' => 'your-length-integer',
+        //     // 'alphabet' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+        // ],
+
+        \App\User::class => [
+            'salt' => \App\User::class . '7623e9b0009feff8e024a689d6ef59ce',
+            'length' => 5,
         ],
 
     ],
