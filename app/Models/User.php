@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Role;
+use App\Traits\Hashidable;
 use Illuminate\Support\Str;
 use App\Transformers\UserTransformer;
 use Illuminate\Notifications\Notifiable;
@@ -12,7 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, Notifiable, SoftDeletes, Hashidable;
 
     protected $dates = ['deleted_at'];
 
@@ -39,7 +40,7 @@ class User extends Authenticatable
         'image',
         'client_details',
     ];
-    
+
 
     /**
      * The attributes that should be hidden for arrays.
