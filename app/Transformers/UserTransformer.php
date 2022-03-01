@@ -43,7 +43,7 @@ class UserTransformer extends TransformerAbstract
         }
 
         return [
-            'userId' => (string) \Hashids::connection(\App\User::class)->encode($user->id),
+            'userId' => (int) $user->id,
             'userName' => (string) $user->name,
             'userEmail' => (string) $user->email,
             'userEmailVerifiedDate' => (string) $user->email_verified_at,
@@ -55,17 +55,17 @@ class UserTransformer extends TransformerAbstract
             'deletedDate' => isset($user->deleted_at) ? (string) $user->deleted_at : null,
             'clientDetails' => (string) $user->client_details,
             'roles' => [
-                'userRoleId' =>(string) \Hashids::connection(\App\Role::class)->encode($roleId),
+                'userRoleId' =>(int) $roleId,
                 'userRole' => $roleName,
             ],
             'links' => [
                 [
                     'rel' => 'self',
-                    'href' => route('users.show', (string) \Hashids::connection(\App\User::class)->encode($user->id)),
+                    'href' => route('users.show', (int) $user->id),
                 ],
                 [
                     'rel' => 'users.roles',
-                    'href' => route('users.roles.index', (string) \Hashids::connection(\App\User::class)->encode($user->id)),
+                    'href' => route('users.roles.index', (int) $user->id),
                 ],
             ],
         ];

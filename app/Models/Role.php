@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\User;
-use App\Traits\Hashidable;
 use App\Transformers\RoleTransformer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,7 +12,7 @@ class Role extends Model
 {
     use HasFactory;
 
-    use SoftDeletes, Hashidable;
+    use SoftDeletes;
 
     protected $dates = ['deleted_at'];
 

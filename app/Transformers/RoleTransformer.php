@@ -33,7 +33,7 @@ class RoleTransformer extends TransformerAbstract
     public function transform(Role $role)
     {
         return [
-            'userRoleId' => (string) \Hashids::connection(\App\Role::class)->encode($role->id),
+            'userRoleId' => (int) $role->id,
             'userRole' => (string) $role->role,
             'creationDate' => (string) $role->created_at,
             'lastChange' => (string) $role->updated_at,
@@ -42,11 +42,11 @@ class RoleTransformer extends TransformerAbstract
             'links' => [
                 [
                     'rel' => 'self',
-                    'href' => route('roles.show', \Hashids::connection(\App\Role::class)->encode($role->id)),
+                    'href' => route('roles.show', $role->id),
                 ],
                 [
                     'rel' => 'roles.users',
-                    'href' => route('roles.users.index', \Hashids::connection(\App\Role::class)->encode($role->id)),
+                    'href' => route('roles.users.index', $role->id),
                 ],
             ],
         ];

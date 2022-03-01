@@ -47,14 +47,6 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
-
-        Route::bind('user', function ($value, $route) {
-            return $this->getModel(\App\User::class, $value);
-        });
-
-        Route::bind('role', function ($value, $route) {
-            return $this->getModel(\App\Role::class, $value);
-        });
     }
 
     /**
@@ -67,13 +59,5 @@ class RouteServiceProvider extends ServiceProvider
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
-    }
-
-    private function getModel($model, $routeKey)
-    {
-        $id = \Hashids::connection($model)->decode($routeKey)[0] ?? null;
-        $modelInstance = resolve($model);
-
-        return $modelInstance->findOrFail($id);
     }
 }
