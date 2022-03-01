@@ -54,6 +54,11 @@ return [
             'length' => 10,
         ],
 
+        \App\Role::class => [
+            'salt' => \App\Role::class . env('APP_NAME'),
+            'length' => 10,
+        ],
+
     ],
 
 ];
