@@ -55,7 +55,7 @@ class UserTransformer extends TransformerAbstract
             'deletedDate' => isset($user->deleted_at) ? (string) $user->deleted_at : null,
             'clientDetails' => (string) $user->client_details,
             'roles' => [
-                'userRoleId' => $roleId,
+                'userRoleId' =>(string) \Hashids::connection(\App\Role::class)->encode($roleId),
                 'userRole' => $roleName,
             ],
             'links' => [

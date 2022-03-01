@@ -60,8 +60,7 @@ class UserController extends ApiController
         $encryptedRoleId = $request->role_id;
 
         // Decrypyt Role Id
-        // $decryptedRoleId = \Hashids::connection(\App\Role::class)->decode($encryptedRoleId);
-        $decryptedRoleId = $request->role_id;
+        $decryptedRoleId = \Hashids::connection(\App\Role::class)->decode($encryptedRoleId);
         $roleId = $decryptedRoleId[0];
 
         if ($roleId == 1 || $roleId == 2) {
