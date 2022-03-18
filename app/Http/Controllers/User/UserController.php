@@ -53,17 +53,7 @@ class UserController extends ApiController
 
         $data = $request->all();
 
-        /**
-         * Role based condition
-         */
-        // Here we get hashids
-        $encryptedRoleId = $request->role_id;
-
-        // Decrypyt Role Id
-        $decryptedRoleId = \Hashids::connection(\App\Role::class)->decode($encryptedRoleId);
-        $roleId = $decryptedRoleId[0];
-
-        if ($roleId == 1 || $roleId == 2) {
+        if ($request->role_id == 1 || $request->role_id == 2) {
             $isAdmin = true;
         } else {
             $isAdmin = false;
@@ -115,6 +105,7 @@ class UserController extends ApiController
      */
     public function update(Request $request, User $user)
     {
+
         /**
          * Validation
          */
@@ -129,13 +120,9 @@ class UserController extends ApiController
         /**
          * Role based condition
          */
-        if ($request->has('role_id')) {
-            // Here we get hashids
-            $encryptedRoleId = $request->role_id;
 
-            // Decrypyt Role Id
-            $decryptedRoleId = \Hashids::connection(\App\Role::class)->decode($encryptedRoleId);
-            $roleId = $decryptedRoleId[0];
+        if ($request->has('role_id')) {
+            $roleId = $request->role_id;
         } else {
             $roleOfuser = DB::table('role_user')->where('user_id', $user->id)->first();
             $roleId = $roleOfuser->role_id;
@@ -179,13 +166,13 @@ class UserController extends ApiController
 
         // Update role
         if ($request->has('role_id')) {
-            $userRoleAssign = ['role_id' => $roleId];
+            $userRoleAssign = ['role_id' => $request->role_id];
             DB::table('role_user')
                 ->where('user_id', $user->id)
                 ->update($userRoleAssign);
 
             // Getting Client Details
-            $user->client_details = $this->applicationDetector();
+            // $user->client_details = $this->applicationDetector();
         }
 
         if (!$user->isDirty()) {
@@ -193,7 +180,7 @@ class UserController extends ApiController
         }
 
         // Getting Client Details
-        $user->client_details = $this->applicationDetector();
+        // $user->client_details = $this->applicationDetector();
 
         $user->save();
 
